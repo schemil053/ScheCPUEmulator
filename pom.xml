@@ -44,12 +44,16 @@
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
+    <profiles>
+        <profile>
             <id>emilschlampp-repo</id>
-            <name>Private Repo</name>
-            <url>https://maven.emilschlampp.de/repo</url>
-        </repository>
-    </distributionManagement>
+            <distributionManagement>
+                <repository>
+                    <id>emilschlampp-repo</id>
+                    <url>https://maven.emilschlampp.de/repo</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>
