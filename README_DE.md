@@ -161,6 +161,6 @@ mvn install
 - [ ] Eine Minecraft-Version des Emulators erstellen, die innerhalb von Minecraft läuft und Mechaniken hinzufügt, um Redstone über eine CPU zu steuern.
 - [ ] Eine höhere Programmiersprache als Schessembler entwickeln (angefangen, aber noch nicht abgeschlossen).
 - [ ] Einen Debugger hinzufügen.
-- [ ] Eine Möglichkeit hinzufügen, das Programm zur Laufzeit zu ändern.
+- [ ] Eine Möglichkeit hinzufügen, das Programm in der Laufzeit zu ändern.
 - [ ] Weitere Einschränkungen hinzufügen, um die CPU-Nutzung sicherer für den Einsatz in Produktionsumgebungen zu gestalten.
 - [ ] Mehr Möglichkeiten zur Verwendung von Registern (Funktionen/Instruktionen implementieren?).
