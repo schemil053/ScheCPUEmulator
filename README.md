@@ -16,9 +16,9 @@ URL: https://github.com/schemil053/ScheCPUEmulator
    - [Instruction Set](#instruction-set)
    - [Registers](#registers)
    - [Memory Management](#memory-management)
-4. [Usage]()
-5. [Examples]()
-6. [Future Improvements]()
+4. [Usage](#usage)
+5. [Examples](#examples)
+6. [Future Improvements](#future-improvements)
 
 ### Introduction
 This project is a Java-based CPU emulator that aims to simulate fundamental CPU operations for educational purposes. The emulator is designed to simplify understanding of how CPUs function, making it accessible and easy to learn for those new to computing.
@@ -65,6 +65,8 @@ This emulator runs in a "locked-down" mode: programs are loaded at compile-time,
 - A value at the memory is a 32-bit integer. 2^31-1 is the maximum limit and -2^31 the minimum limit (Java integer limit).
 
 ### Usage
+#### Using in your own program
+##### Jitpak
 
 ### Examples
 
