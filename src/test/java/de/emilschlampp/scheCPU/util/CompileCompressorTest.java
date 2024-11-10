@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Base64;
 
-public class CompileCompressor {
+public class CompileCompressorTest {
     public static void main(String[] args) throws Throwable {
         FileInputStream inputStream = new FileInputStream(new File("compile.sbin"));
 
