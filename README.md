@@ -152,7 +152,7 @@ mvn install
 
 ## Examples
 ### Schessembler Examples
-- [Hello world (char by char)](src/test/resources/hello world.sasm)
+- [Hello world (char by char)](src/test/resources/hello-world.sasm)
 - [Hello world (loadstrm)](src/test/resources/simple-loadstrm.sasm)
 
 ### Implementation
