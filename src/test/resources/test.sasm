@@ -1,0 +1,46 @@
+; OUTW 2 1
+LOAD A 10 ; Wie oft?
+STOREMEM 5 0 ; Wir schauen wie oft wir es schon ausgegeben haben
+FUNC call
+CMPM A 5 ; schauen wie oft wir es schon ausgegeben haben
+CJMP helloWorld ; okay, noch einmal ausgeben
+JMP end ; wir sind fertig
+
+
+FUNC helloWorld
+; H
+OUTW 34 72
+; e
+OUTW 34 101
+; l
+OUTW 34 108
+; l
+OUTW 34 108
+; o
+OUTW 34 111
+; space
+OUTW 34 32
+; w
+OUTW 34 119
+; o
+OUTW 34 111
+; r
+OUTW 34 114
+; l
+OUTW 34 108
+; d
+OUTW 34 100
+; !
+OUTW 34 33
+; newline
+OUTW 34 10
+; add 1 to counter in mem at addr 5
+ADDM 5 1
+
+; dump registers and memory
+; OUTW 1 1
+
+; jump back to call
+JMP call
+
+FUNC end

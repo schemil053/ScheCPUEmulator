@@ -1,0 +1,21 @@
+STOREMEM 0 0 ; tracker, wie viele zeichen schon ausgegeben wurden
+LOAD A 11 ; anzahl der Zeichen
+LOADSTRM 2 Hallo Welt! ; Text in den RAM laden
+STOREMEM 1 2 ; aktuelle Ram-Addresse
+
+FUNC call ; hierhin können wir springen, um einen loop zu erzeugen
+
+CMPM A 0 ; schauen wie oft wir es schon ausgegeben haben
+CJMP printChar ; okay, noch einmal ausgeben
+
+JMP end ; wir sind fertig, wir springen zum Ende
+
+FUNC printChar ; Sprungpunkt um ein Zeichen auszugeben.
+
+OUTWDM 34 1 ; wir geben den Wert aus, der an der Ram-Adresse von dem Wert aus Ram-Adresse 1 ist
+
+ADDM 1 1 ; ram-addresse fürs nächste zeichen
+ADDM 0 1 ; zeichen-counter erhöhen
+JMP call
+
+FUNC end
