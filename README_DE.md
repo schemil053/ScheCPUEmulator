@@ -4,7 +4,7 @@ URL: https://github.com/schemil053/ScheCPUEmulator
 
 ## Sprachen
 - [Englisch](README.md)
-- Deutsch (#deutsch)
+- [Deutsch](#deutsch)
 
 ## Deutsch
 
