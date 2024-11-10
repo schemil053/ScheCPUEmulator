@@ -50,6 +50,8 @@ This emulator runs in a "locked-down" mode: programs are loaded at compile-time,
 **4. Instruction Set Architecture (ISA)**
 - The CPU operates on a basic set of instructions (e.g., MOV, ADD, SUB, JMP) that control data movement, arithmetic, logic operations, and program flow.
 
+**5. Multi-Thread**
+- This CPU is single-threaded for better understanding.
 
 ### Instruction Set
 - You can find the complete instruction table in the file [src/main/resources/Instructions.md](src/main/resources/Instructions.md)
