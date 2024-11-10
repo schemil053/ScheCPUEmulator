@@ -36,7 +36,7 @@ This emulator runs in a "locked-down" mode: programs are loaded at compile-time,
 #### CPU Architecture
 **1. Word Size**:
 
-- The CPU in this emulator uses an 32-bot word size. That's because an integer in java is normally an 32-bit sized object (4 bytes). This means, the max number of memory addresses, memory values or register values is 2^31-1 (2147483647).
+- The CPU in this emulator uses an 32-bit word size. That's because an integer in java is normally an 32-bit sized object (4 bytes). This means, the max number of memory addresses, memory values or register values is 2^31-1 (2147483647).
 
 **2. Registers**
 - The CPU includes a set of registers that act as small, fast storage locations used to hold data and instructions during execution.
