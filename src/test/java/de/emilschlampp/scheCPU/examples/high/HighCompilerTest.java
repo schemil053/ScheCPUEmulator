@@ -1,6 +1,7 @@
 package de.emilschlampp.scheCPU.examples.high;
 
 import de.emilschlampp.scheCPU.examples.Main;
+import de.emilschlampp.scheCPU.high.HighProgramCompiler;
 
 import java.io.FileOutputStream;
 import java.util.Scanner;
