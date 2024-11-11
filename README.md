@@ -155,7 +155,7 @@ mvn install
 ## Examples
 ### Schessembler Examples
 - [Hello world (char by char)](src/test/resources/hello-world.sasm)
-- [Hello world (loadstrm)](src/test/resources/simple-loadstrm.sasm)
+- [Hello world (loadstrm)](src/test/resources/simple-loadstrm-english.sasm)
 
 ### Implementation
 - [Simple Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/compile/CompilerTest.java)

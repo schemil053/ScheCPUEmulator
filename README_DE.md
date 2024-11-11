@@ -150,7 +150,7 @@ mvn install
 ## Beispiele
 ### Schessembler-Beispiele
 - [Hello world (Zeichen für Zeichen)](src/test/resources/hello-world.sasm)
-- [Hello world (loadstrm)](src/test/resources/simple-loadstrm.sasm)
+- [Hello world (loadstrm)](src/test/resources/simple-loadstrm-german.sasm)
 
 ### Implementierung
 - [Einfacher Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/compile/CompilerTest.java)
