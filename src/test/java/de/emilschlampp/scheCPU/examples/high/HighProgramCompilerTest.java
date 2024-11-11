@@ -1,4 +1,4 @@
-package de.emilschlampp.scheCPU.high;
+package de.emilschlampp.scheCPU.examples.high;
 
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.dissassembler.Decompiler;

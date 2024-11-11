@@ -1,4 +1,4 @@
-package de.emilschlampp.scheCPU;
+package de.emilschlampp.scheCPU.examples;
 
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.dissassembler.Decompiler;

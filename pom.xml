@@ -54,6 +54,9 @@
                 </repository>
             </distributionManagement>
         </profile>
+        <profile>
+            <id>github-repo</id>
+        </profile>
     </profiles>
 
 </project>

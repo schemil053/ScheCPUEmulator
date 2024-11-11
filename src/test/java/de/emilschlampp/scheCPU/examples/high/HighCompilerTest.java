@@ -1,11 +1,11 @@
-package de.emilschlampp.scheCPU.compile;
+package de.emilschlampp.scheCPU.examples.high;
 
-import de.emilschlampp.scheCPU.Main;
+import de.emilschlampp.scheCPU.examples.Main;
 
 import java.io.FileOutputStream;
 import java.util.Scanner;
 
-public class CompilerTest {
+public class HighCompilerTest {
     public static void main(String[] args) throws Throwable {
         Scanner scanner = new Scanner(Main.class.getResourceAsStream("/simple-loadstrm.sasm"));
         String l = "";
@@ -16,7 +16,7 @@ public class CompilerTest {
             l = l.substring(1);
         }
 
-        byte[] code = new Compiler(l).compile();
+        byte[] code = new HighProgramCompiler(l).toBytecode();
 
         FileOutputStream outputStream = new FileOutputStream("compile.sbin");
         outputStream.write(code);
