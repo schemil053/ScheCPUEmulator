@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Throwable {
-        //Scanner scanner = new Scanner(Main.class.getResourceAsStream("/test.sasm"));
         Scanner scanner = new Scanner(Main.class.getResourceAsStream("/simple-loadstrm.sasm"));
         String l = "";
         while (scanner.hasNextLine()) {
@@ -26,8 +25,6 @@ public class Main {
         outputStream.close();
 
         String codeR = new Decompiler(code).decompile();
-
-        //System.out.println(codeR);
 
         code = new Compiler(codeR).compile();
 
