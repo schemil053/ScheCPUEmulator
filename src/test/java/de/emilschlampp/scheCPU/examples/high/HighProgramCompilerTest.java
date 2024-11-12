@@ -1,8 +1,9 @@
-package de.emilschlampp.scheCPU.high;
+package de.emilschlampp.scheCPU.examples.high;
 
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.dissassembler.Decompiler;
 import de.emilschlampp.scheCPU.emulator.ProcessorEmulator;
+import de.emilschlampp.scheCPU.high.HighProgramCompiler;
 
 import java.io.File;
 import java.io.FileOutputStream;

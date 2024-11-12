@@ -1,5 +1,6 @@
-package de.emilschlampp.scheCPU.emulator;
+package de.emilschlampp.scheCPU.examples.emulator;
 
+import de.emilschlampp.scheCPU.emulator.ProcessorEmulator;
 import de.emilschlampp.scheCPU.util.FolderIOUtil;
 
 import java.io.FileInputStream;

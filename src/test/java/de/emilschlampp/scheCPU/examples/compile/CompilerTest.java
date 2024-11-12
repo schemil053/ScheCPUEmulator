@@ -1,6 +1,7 @@
-package de.emilschlampp.scheCPU.compile;
+package de.emilschlampp.scheCPU.examples.compile;
 
-import de.emilschlampp.scheCPU.Main;
+import de.emilschlampp.scheCPU.examples.Main;
+import de.emilschlampp.scheCPU.compile.Compiler;
 
 import java.io.FileOutputStream;
 import java.util.Scanner;
