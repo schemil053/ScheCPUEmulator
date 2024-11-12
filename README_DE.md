@@ -150,12 +150,12 @@ mvn install
 ## Beispiele
 ### Schessembler-Beispiele
 - [Hello world (Zeichen für Zeichen)](src/test/resources/hello-world.sasm)
-- [Hello world (loadstrm)](src/test/resources/simple-loadstrm.sasm)
+- [Hello world (loadstrm)](src/test/resources/simple-loadstrm-german.sasm)
 
 ### Implementierung
-- [Einfacher Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/compile/CompilerTest.java)
-- [Einfacher Compiler (Highlang)](src/test/java/de/emilschlampp/scheCPU/high/HighCompilerTest.java)
-- [Ausführung (Bytecode)](src/test/java/de/emilschlampp/scheCPU/emulator/CPUEmulatorTest.java)
+- [Einfacher Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/examples/compile/CompilerTest.java)
+- [Einfacher Compiler (Highlang)](src/test/java/de/emilschlampp/scheCPU/examples/high/HighCompilerTest.java)
+- [Ausführung (Bytecode)](src/test/java/de/emilschlampp/scheCPU/examples/emulator/CPUEmulatorTest.java)
 
 ## Zukünftige Verbesserungen
 - [ ] Eine Minecraft-Version des Emulators erstellen, die innerhalb von Minecraft läuft und Mechaniken hinzufügt, um Redstone über eine CPU zu steuern.

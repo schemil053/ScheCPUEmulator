@@ -1,4 +1,4 @@
-package de.emilschlampp.scheCPU.util;
+package de.emilschlampp.scheCPU.examples.util;
 
 import java.io.File;
 import java.io.FileInputStream;

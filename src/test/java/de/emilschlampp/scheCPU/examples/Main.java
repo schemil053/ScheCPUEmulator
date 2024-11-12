@@ -1,4 +1,4 @@
-package de.emilschlampp.scheCPU;
+package de.emilschlampp.scheCPU.examples;
 
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.dissassembler.Decompiler;
@@ -9,8 +9,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Throwable {
-        //Scanner scanner = new Scanner(Main.class.getResourceAsStream("/test.sasm"));
-        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/simple-loadstrm.sasm"));
+        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/simple-loadstrm-german.sasm"));
         String l = "";
         while (scanner.hasNextLine()) {
             l+="\n"+scanner.nextLine();
@@ -26,8 +25,6 @@ public class Main {
         outputStream.close();
 
         String codeR = new Decompiler(code).decompile();
-
-        //System.out.println(codeR);
 
         code = new Compiler(codeR).compile();
 

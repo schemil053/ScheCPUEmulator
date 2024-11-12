@@ -47,4 +47,8 @@ public class StaticValues {
     public static final int REGID_C = 2;
     public static final int REGID_D = 3;
     public static final int REGID_BOOLVAL = 4;
+
+
+
+    public static final int SERIAL_VERSION = 1_00;
 }

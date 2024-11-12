@@ -1,0 +1,21 @@
+STOREMEM 0 0 ; tracker, how many characters have already been output
+LOAD A 11 ; number of characters
+LOADSTRM 2 Hallo Welt! ; load text into RAM
+STOREMEM 1 2 ; current RAM address
+
+FUNC call ; jump here to create a loop
+
+CMPM A 0 ; check how many times we have already output the text
+CJMP printChar ; okay, output one more time
+
+JMP end ; we are done, jump to the end
+
+FUNC printChar ; jump point to output a character.
+
+OUTWDM 34 1 ; output the value at the RAM address from the value at RAM address 1
+
+ADDM 1 1 ; increment RAM address for the next character
+ADDM 0 1 ; increment character counter
+JMP call
+
+FUNC end

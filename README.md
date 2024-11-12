@@ -155,12 +155,12 @@ mvn install
 ## Examples
 ### Schessembler Examples
 - [Hello world (char by char)](src/test/resources/hello-world.sasm)
-- [Hello world (loadstrm)](src/test/resources/simple-loadstrm.sasm)
+- [Hello world (loadstrm)](src/test/resources/simple-loadstrm-english.sasm)
 
 ### Implementation
-- [Simple Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/compile/CompilerTest.java)
-- [Simple Compiler (Highlang)](src/test/java/de/emilschlampp/scheCPU/high/HighCompilerTest.java)
-- [Executor (Bytecode)](src/test/java/de/emilschlampp/scheCPU/emulator/CPUEmulatorTest.java)
+- [Simple Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/examples/compile/CompilerTest.java)
+- [Simple Compiler (Highlang)](src/test/java/de/emilschlampp/scheCPU/examples/high/HighCompilerTest.java)
+- [Executor (Bytecode)](src/test/java/de/emilschlampp/scheCPU/examples/emulator/CPUEmulatorTest.java)
 
 
 ## Future Improvements

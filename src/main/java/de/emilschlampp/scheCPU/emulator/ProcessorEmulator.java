@@ -47,27 +47,33 @@ public class ProcessorEmulator {
         ByteArrayInputStream inputStream = new ByteArrayInputStream(state);
 
         try {
-            this.jmp = FolderIOUtil.readInt(inputStream);
-            this.lastStoreVal = FolderIOUtil.readInt(inputStream);
+            int version = FolderIOUtil.readInt(inputStream);
 
-            this.register = new int[FolderIOUtil.readInt(inputStream)];
-            for (int i = 0; i < this.register.length; i++) {
-                this.register[i] = FolderIOUtil.readInt(inputStream);
+            if(version == 1_00) {
+                this.jmp = FolderIOUtil.readInt(inputStream);
+                this.lastStoreVal = FolderIOUtil.readInt(inputStream);
+
+                this.register = new int[FolderIOUtil.readInt(inputStream)];
+                for (int i = 0; i < this.register.length; i++) {
+                    this.register[i] = FolderIOUtil.readInt(inputStream);
+                }
+
+                this.memory = new int[FolderIOUtil.readInt(inputStream)];
+                for (int i = 0; i < this.memory.length; i++) {
+                    this.memory[i] = FolderIOUtil.readInt(inputStream);
+                }
+
+                this.io = new int[FolderIOUtil.readInt(inputStream)];
+                for (int i = 0; i < this.io.length; i++) {
+                    this.io[i] = FolderIOUtil.readInt(inputStream);
+                }
+
+                this.lastJMP = FolderIOUtil.readInt(inputStream);
+
+                this.instructions = new Decompiler(FolderIOUtil.readByteArray(inputStream)).getInstructions();
+            } else {
+                throw new IllegalStateException("unsupported CPU version!");
             }
-
-            this.memory = new int[FolderIOUtil.readInt(inputStream)];
-            for (int i = 0; i < this.memory.length; i++) {
-                this.memory[i] = FolderIOUtil.readInt(inputStream);
-            }
-
-            this.io = new int[FolderIOUtil.readInt(inputStream)];
-            for (int i = 0; i < this.io.length; i++) {
-                this.io[i] = FolderIOUtil.readInt(inputStream);
-            }
-
-            this.lastJMP = FolderIOUtil.readInt(inputStream);
-
-            this.instructions = new Decompiler(FolderIOUtil.readByteArray(inputStream)).getInstructions();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -77,6 +83,8 @@ public class ProcessorEmulator {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
+            FolderIOUtil.writeInt(outputStream, SERIAL_VERSION);
+
             FolderIOUtil.writeInt(outputStream, jmp);
             FolderIOUtil.writeInt(outputStream, lastStoreVal);
 
