@@ -24,7 +24,7 @@ URL: https://github.com/schemil053/ScheCPUEmulator
 ## Einleitung
 Dieses Projekt ist ein Java-basierter CPU-Emulator, der grundlegende CPU-Operationen zu Lernzwecken simuliert. Der Emulator wurde entwickelt, um das Verständnis dafür zu erleichtern, wie eine CPU funktioniert und für Einsteiger leicht zugänglich und verständlich zu machen.
 
-Dieser Emulator läuft im "locked-down"-Modus: Programme werden zur Compile-Zeit geladen, d. h. Speicher und Befehle können zur Laufzeit nicht verändert werden. Diese Einschränkung ermöglicht Anfängern, sich auf die grundlegende CPU-Mechanik zu konzentrieren, ohne zusätzliche Komplexität.
+Dieser Emulator läuft im "locked-down"-Modus: Programme werden beim Start in einem anderem Speicher geladen, d. h. Speicher und Befehle können zur Laufzeit nicht verändert werden. Diese Einschränkung ermöglicht Anfängern, sich auf die grundlegende CPU-Mechanik zu konzentrieren, ohne zusätzliche Komplexität.
 
 ## Projektziele
 - Die Grundlagen des CPU-Designs vermitteln: Der Hauptzweck dieses Emulators ist es, den Benutzern zu helfen, zu verstehen, wie eine CPU funktioniert.
@@ -110,7 +110,7 @@ Hier sind einige empfohlene Methoden:
         </profile>
     </profiles>
 ```
-2. Bauen und bereitstellen:
+2. Bauen und in die Repo laden:
 ```bash
 mvn deploy -P beispiel-repo
 ```
