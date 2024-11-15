@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import static de.emilschlampp.scheCPU.util.StaticValues.*;
+
 public class HighProgramCompiler {
     private final String program;
     private String output;
@@ -302,6 +304,44 @@ public class HighProgramCompiler {
                         "LOADMEM BOOL 1\n" +
                         "OUTWM 5 20"
                 ;
+            } else if(split[0].equals("out")) {
+                String val = split[1];
+
+                String portVal = split[2];
+
+                if(!isInt(portVal)) {
+                    error("invalid port!");
+                }
+
+                int port = parseInt(portVal);
+
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address = variableAddresses.get(val);
+
+                code = code + "\n" +
+                        "OUTWM "+port+" "+address;
+            } else if(split[0].equals("in")) {
+                String val = split[1];
+
+                String portVal = split[2];
+
+                if(!isInt(portVal)) {
+                    error("invalid port!");
+                }
+
+                int port = parseInt(portVal);
+
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address = variableAddresses.get(val);
+
+                code = code + "\n" +
+                        "INWM "+port+" "+address;
             } else if (split[0].equals("println")) {
                 String val = split[1];
 
@@ -388,6 +428,38 @@ public class HighProgramCompiler {
         this.output = code;
 
         return this;
+    }
+
+    private boolean isInt(String i) {
+        try {
+            Integer.parseInt(i);
+            return true;
+        } catch (Throwable t) {
+            return false;
+        }
+    }
+
+    private int parseInt(String i) {
+        if(!isInt(i)) {
+            throw new RuntimeException("Expected Integer");
+        }
+        return Integer.parseInt(i);
+    }
+
+    private int toRegID(String v) {
+        switch (v) {
+            case "A":
+                return REGID_A;
+            case "B":
+                return REGID_B;
+            case "C":
+                return REGID_C;
+            case "D":
+                return REGID_D;
+            case "BOOL":
+                return REGID_BOOLVAL;
+        }
+        throw new RuntimeException("err");
     }
 
     private void error(String message) {
