@@ -17,8 +17,9 @@ URL: https://github.com/schemil053/ScheCPUEmulator
    - [Registers](#registers)
    - [Memory Management](#memory-management)
 4. [Usage](#usage)
-5. [Examples](#examples)
-6. [Future Improvements](#future-improvements)
+5. [Programming Languages](#programming-languages)
+6. [Examples](#examples)
+7. [Future Improvements](#future-improvements)
 
 ## Introduction
 This project is a Java-based CPU emulator that aims to simulate fundamental CPU operations for educational purposes. The emulator is designed to simplify understanding of how CPUs function, making it accessible and easy to learn for those new to computing.
@@ -151,6 +152,25 @@ mvn install
     <scope>compile</scope>
 </dependency>
 ```
+
+[## Programming Languages
+There are 2 Languages that this default configuration can compile and understand.
+The first one is Schessembler. It's an assembly-like language with a custom instruction set.
+The second one is Highlang. It converts to Schessembler, wich converts to bytecode.
+
+### Schessembler
+Structure:
+```text
+INSTRUCTION <ARG1> <ARG2> <ARG...>...
+```
+You can find all available Instructions [here](src/main/resources/Instructions.md)
+
+### Highlang
+Structure
+```text
+command <arg1> <arg2> <arg...>...
+```
+You can find all available Instructions [here](src/main/resources/Highlang.md)]()
 
 ## Examples
 ### Schessembler Examples
