@@ -17,13 +17,14 @@ URL: https://github.com/schemil053/ScheCPUEmulator
    - [Register](#register)
    - [Speicherverwaltung](#speicherverwaltung)
 4. [Verwendung](#verwendung)
-5. [Beispiele](#beispiele)
-6. [Zukünftige Verbesserungen](#zukünftige-verbesserungen)
+5. [Programmiersprachen](#programmiersprachen)
+6. [Beispiele](#beispiele)
+7. [Zukünftige Verbesserungen](#zukünftige-verbesserungen)
 
 ## Einleitung
 Dieses Projekt ist ein Java-basierter CPU-Emulator, der grundlegende CPU-Operationen zu Lernzwecken simuliert. Der Emulator wurde entwickelt, um das Verständnis dafür zu erleichtern, wie eine CPU funktioniert und für Einsteiger leicht zugänglich und verständlich zu machen.
 
-Dieser Emulator läuft im "locked-down"-Modus: Programme werden zur Compile-Zeit geladen, d. h. Speicher und Befehle können zur Laufzeit nicht verändert werden. Diese Einschränkung ermöglicht Anfängern, sich auf die grundlegende CPU-Mechanik zu konzentrieren, ohne zusätzliche Komplexität.
+Dieser Emulator läuft im "locked-down"-Modus: Programme werden beim Start in einem anderem Speicher geladen, d. h. Speicher und Befehle können zur Laufzeit nicht verändert werden. Diese Einschränkung ermöglicht Anfängern, sich auf die grundlegende CPU-Mechanik zu konzentrieren, ohne zusätzliche Komplexität.
 
 ## Projektziele
 - Die Grundlagen des CPU-Designs vermitteln: Der Hauptzweck dieses Emulators ist es, den Benutzern zu helfen, zu verstehen, wie eine CPU funktioniert.
@@ -109,7 +110,7 @@ Hier sind einige empfohlene Methoden:
         </profile>
     </profiles>
 ```
-2. Bauen und bereitstellen:
+2. Bauen und in die Repo laden:
 ```bash
 mvn deploy -P beispiel-repo
 ```
@@ -146,6 +147,25 @@ mvn install
     <scope>compile</scope>
 </dependency>
 ```
+
+## Programmiersprachen
+Dieses Projekt versteht in der Standardkonfiguration zwei Programmiersprachen, welche kompiliert werden können.
+Die erste ist Schessembler. Sie hat einige Ähnlichkeiten mit Assembler, allerdings eine eigene Anweisungstabelle.
+Die zweite Programmiersprache ist Highlang. Sie wird in Schessembler umgewandelt, welches in Bytecode umgewandelt werden kann.
+
+### Schessembler
+Structure:
+```text
+ANWEISUNG <ARG1> <ARG2> <ARG...>...
+```
+Alle Anweisungen sind [hier](src/main/resources/Instructions.md) aufgelistet.
+
+### Highlang
+Structure
+```text
+anweisung <arg1> <arg2> <arg...>...
+```
+Alle Anweisungen sind [hier](src/main/resources/Highlang.md) aufgelistet.
 
 ## Beispiele
 ### Schessembler-Beispiele

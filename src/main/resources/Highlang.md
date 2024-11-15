@@ -24,6 +24,8 @@ Die Sprache ist wie folgt aufgebaut:
 | print       | <Variable>               | Gibt die angegebene Variable aus                                                                                                                                                                                                                          |
 | println     | <Variable>               | Gibt die angegebene Variable aus und fügt ein \n hinzu                                                                                                                                                                                                    |
 | putnot      | <Variable>               | Verneint den angegebene Boolean                                                                                                                                                                                                                           |
+| out         | <Variable> <Port>        | Gibt etwas auf dem IO-Port aus                                                                                                                                                                                                                            |
+| in          | <Variable> <Port>        | Speichert den Wert auf Port in der Variable                                                                                                                                                                                                               |
 
 Natürlich können Erweiterungen und PreCompiler die Möglichkeiten und Befehle erweitern.
 
