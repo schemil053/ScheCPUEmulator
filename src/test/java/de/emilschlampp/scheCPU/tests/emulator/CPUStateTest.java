@@ -1,4 +1,4 @@
-package de.emilschlampp.scheCPU.tests;
+package de.emilschlampp.scheCPU.tests.emulator;
 
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.emulator.ProcessorEmulator;
