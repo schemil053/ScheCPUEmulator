@@ -118,7 +118,7 @@ mvn deploy -P beispiel-repo
 3. Fügen Sie es als Abhängigkeit hinzu:
 ```xml
     <repository>
-        <id>jitpack.io</id>
+        <id>beispiel-repo</id>
         <url>https://maven.beispiel.com/repo</url>
     </repository>
 ```
