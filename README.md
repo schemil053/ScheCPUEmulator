@@ -2,6 +2,8 @@
 
 URL: https://github.com/schemil053/ScheCPUEmulator
 
+Minecraft Bridge: https://github.com/schemil053/ScheCPUMinecraft
+
 ## Languages
 - [English](#english)
 - [German](README_DE.md)
