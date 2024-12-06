@@ -148,6 +148,10 @@ public class Instruction {
         if(instruction.opCode == CZMJMP_OPCODE) {
             instruction.address = FolderIOUtil.readInt(inputStream);
         }
+        if(instruction.opCode == ADDMM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
 
         return instruction;
     }

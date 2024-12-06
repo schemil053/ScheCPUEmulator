@@ -142,6 +142,9 @@ public class Decompiler {
             if(instruction.getOpCode() == CZMJMP_OPCODE) {
                 line = "CZMJMP "+instruction.getAddress();
             }
+            if(instruction.getOpCode() == ADDMM_OPCODE) {
+                line = "ADDMM "+instruction.getAddress()+" "+instruction.getAddressS();
+            }
 
 
             pr+="\n"+line;
