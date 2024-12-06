@@ -325,6 +325,9 @@ public class ProcessorEmulator {
                     jmp++;
                 }
                 break;
+            case ADDMM_OPCODE:
+                memory[instruction.getAddress()]+=instruction.getAddressS();
+                break;
             default:
                 throw new RuntimeException("not implemented: " + instruction.getOpCode());
         }

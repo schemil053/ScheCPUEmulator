@@ -39,6 +39,7 @@ public class StaticValues {
     public static final int CMJMP_OPCODE = 35;
     public static final int CNMJMP_OPCODE = 36;
     public static final int CZMJMP_OPCODE = 37;
+    public static final int ADDMM_OPCODE = 38; //TODO: SUB, DIV and MUL
 
 
 
