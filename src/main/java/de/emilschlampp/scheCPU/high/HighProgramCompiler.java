@@ -202,7 +202,7 @@ public class HighProgramCompiler {
                 }
             } else if (split[0].equals("method")) {
                 if (!ifStack.isEmpty()) {
-                    error("double if!");
+                    error("double method!");
                 }
 
                 String name = split[1];
@@ -290,7 +290,7 @@ public class HighProgramCompiler {
                         "STORE BOOL 1\n" + // Altes Register speichern
                         "STOREMEM 2 0\n" +
                         "LOADMEM A " + address + "\n" +
-                        "STOREMEM 3 " + (address + 1) + "\n" + // +1 weil auf der Adresse ja die Anzahl der Zeichen liegt (und Adresse+1 = erstes Zeichen)
+                        "STOREMEM 3 " + (address + 1) + "\n" + // +1, weil auf der Adresse ja die Anzahl der Zeichen liegt (und Adresse+1 = erstes Zeichen)
                         "FUNC tmp_" + f1 + "\n" +
                         "CMPM A 2\n" +
                         "CJMP printChar_" + f2 + "\n" +
