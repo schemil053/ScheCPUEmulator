@@ -155,7 +155,7 @@ mvn install
 </dependency>
 ```
 
-[## Programming Languages
+## Programming Languages
 There are 2 Languages that this default configuration can compile and understand.
 The first one is Schessembler. It's an assembly-like language with a custom instruction set.
 The second one is Highlang. It converts to Schessembler, wich converts to bytecode.
