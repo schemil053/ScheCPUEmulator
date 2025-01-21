@@ -172,7 +172,7 @@ Structure
 ```text
 command <arg1> <arg2> <arg...>...
 ```
-You can find all available Instructions [here](src/main/resources/Highlang.md)]()
+You can find all available Instructions [here](src/main/resources/Highlang.md)
 
 ## Examples
 ### Schessembler Examples
