@@ -52,6 +52,9 @@ public class Decompiler {
             if(instruction.getOpCode() == STOREREG_OPCODE) {
                 line = "STOREREG "+instruction.getAddress()+" "+fromRegID(instruction.getRegisterID());
             }
+            if(instruction.getOpCode() == STOREREGM_OPCODE) {
+                line = "STOREREGM "+instruction.getAddress()+" "+fromRegID(instruction.getRegisterID());
+            }
             if(instruction.getOpCode() == CMPM_OPCODE) {
                 line = "CMPM "+fromRegID(instruction.getRegisterID())+" "+instruction.getAddress();
             }
@@ -144,6 +147,15 @@ public class Decompiler {
             }
             if(instruction.getOpCode() == ADDMM_OPCODE) {
                 line = "ADDMM "+instruction.getAddress()+" "+instruction.getAddressS();
+            }
+            if(instruction.getOpCode() == SUBMM_OPCODE) {
+                line = "SUBMM "+instruction.getAddress()+" "+instruction.getAddressS();
+            }
+            if(instruction.getOpCode() == DIVMM_OPCODE) {
+                line = "DIVMM "+instruction.getAddress()+" "+instruction.getAddressS();
+            }
+            if(instruction.getOpCode() == MULMM_OPCODE) {
+                line = "MULMM "+instruction.getAddress()+" "+instruction.getAddressS();
             }
 
 

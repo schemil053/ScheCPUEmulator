@@ -138,6 +138,14 @@ public class Compiler {
                     } else {
                         throw new RuntimeException("err");
                     }
+                } else if (cmd[0].equals("STOREREGM")) { //Store memory value to register
+                    if (cmd.length == 3) {
+                        outputStream.write(STOREREGM_OPCODE);
+                        FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //memadress
+                        outputStream.write(toRegID(cmd[2])); //Register
+                    } else {
+                        throw new RuntimeException("err");
+                    }
                 } else if (cmd[0].equals("CMPM")) { //Compare mem Value with Register
                     if (cmd.length == 3) {
                         outputStream.write(CMPM_OPCODE);
@@ -339,6 +347,18 @@ public class Compiler {
                     outputStream.write(toRegID(cmd[2]));
                 } else if (cmd[0].equals("ADDMM")) {
                     outputStream.write(ADDMM_OPCODE);
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
+                } else if (cmd[0].equals("SUBMM")) {
+                    outputStream.write(SUBMM_OPCODE);
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
+                } else if (cmd[0].equals("DIVMM")) {
+                    outputStream.write(DIVMM_OPCODE);
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
+                } else if (cmd[0].equals("MULMM")) {
+                    outputStream.write(MULMM_OPCODE);
                     FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
                     FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
                 } else if (cmd[0].equals("LOADSTRM")) {
