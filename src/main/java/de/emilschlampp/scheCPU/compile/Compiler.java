@@ -380,6 +380,16 @@ public class Compiler {
                         FolderIOUtil.writeInt(outputStream, c); //value
                         off++;
                     }
+                } else if(cmd[0].equals("OUTWFUNC")) {
+                    int port = parseInt(cmd[1]);
+                    int address = functionsInstructionMap.getOrDefault(cmd[2], -1);
+
+                    if (address == -1) {
+                        throw new RuntimeException("address invalid");
+                    }
+                    outputStream.write(OUTW_OPCODE);
+                    FolderIOUtil.writeInt(outputStream, port);
+                    FolderIOUtil.writeInt(outputStream, address);
                 } else {
                     if (!cmd[0].equals("FUNC")) {
                         throw new RuntimeException("Invalid " + cmd[0] + " line: " + debugLine);
