@@ -135,14 +135,16 @@ public class HighProgramCompiler {
                         "INWM 5 20\n" + //BJMP speichern
                         "STORE BOOL 1\n" + // Altes Register speichern
                         "STORE A 2\n" + // Altes Register speichern
-                        "STOREMEM 2 0\n" +
+                        "STORE B 3\n" + // Altes Register speichern
+                        "STOREMEM 4 0\n" +
                         "FUNC mem_concat_" + func + "\n" +
-                        "CMPM A 2\n" +
+                        "CMPM A 4\n" +
                         "CJMP mem_concat_" + func + "\n" +
 
                         "FUNC end_" + func1 + "\n" +
                         "LOADMEM BOOL 1\n" +
                         "LOADMEM A 2\n" +
+                        "LOADMEM B 3\n" +
                         "OUTWM 5 20"
                 ;
             } else if (split[0].equals("ret")) {
