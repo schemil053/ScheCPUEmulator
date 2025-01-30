@@ -326,16 +326,16 @@ public class ProcessorEmulator {
                 }
                 break;
             case ADDMM_OPCODE:
-                memory[instruction.getAddress()]+=instruction.getAddressS();
+                memory[instruction.getAddress()]+=memory[instruction.getAddressS()];
                 break;
             case SUBMM_OPCODE:
-                memory[instruction.getAddress()]-=instruction.getAddressS();
+                memory[instruction.getAddress()]-=memory[instruction.getAddressS()];
                 break;
             case DIVMM_OPCODE:
-                memory[instruction.getAddress()]/=instruction.getAddressS();
+                memory[instruction.getAddress()]/=memory[instruction.getAddressS()];
                 break;
             case MULMM_OPCODE:
-                memory[instruction.getAddress()]*=instruction.getAddressS();
+                memory[instruction.getAddress()]*=memory[instruction.getAddressS()];
                 break;
             case STOREREGM_OPCODE:
                 register[instruction.getRegisterID()] = memory[memory[instruction.getAddress()]];
