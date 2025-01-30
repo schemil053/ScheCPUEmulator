@@ -340,6 +340,9 @@ public class ProcessorEmulator {
             case STOREREGM_OPCODE:
                 register[instruction.getRegisterID()] = memory[memory[instruction.getAddress()]];
                 break;
+            case LOADREGM_OPCODE:
+                memory[memory[instruction.getAddress()]] = register[instruction.getRegisterID()];
+                break;
             default:
                 throw new RuntimeException("not implemented: " + instruction.getOpCode());
         }

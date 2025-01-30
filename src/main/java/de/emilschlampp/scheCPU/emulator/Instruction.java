@@ -168,6 +168,10 @@ public class Instruction {
             instruction.address = FolderIOUtil.readInt(inputStream);
             instruction.registerID = inputStream.read();
         }
+        if(instruction.opCode == LOADREGM_OPCODE) {
+            instruction.registerID = inputStream.read();
+            instruction.address = FolderIOUtil.readInt(inputStream);
+        }
 
         return instruction;
     }

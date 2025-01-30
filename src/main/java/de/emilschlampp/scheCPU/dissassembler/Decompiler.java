@@ -55,6 +55,9 @@ public class Decompiler {
             if(instruction.getOpCode() == STOREREGM_OPCODE) {
                 line = "STOREREGM "+instruction.getAddress()+" "+fromRegID(instruction.getRegisterID());
             }
+            if(instruction.getOpCode() == LOADREGM_OPCODE) {
+                line = "STOREREGM "+fromRegID(instruction.getRegisterID())+ " " +instruction.getAddress();
+            }
             if(instruction.getOpCode() == CMPM_OPCODE) {
                 line = "CMPM "+fromRegID(instruction.getRegisterID())+" "+instruction.getAddress();
             }

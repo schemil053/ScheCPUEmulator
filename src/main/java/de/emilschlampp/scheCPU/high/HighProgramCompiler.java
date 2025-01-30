@@ -138,6 +138,7 @@ public class HighProgramCompiler {
                         "STORE B 3\n" + // Altes Register speichern
                         "STOREMEM 4 0\n" +
                         "FUNC mem_concat_" + func + "\n" +
+                        "\n"+
                         "CMPM A 4\n" +
                         "CJMP mem_concat_" + func + "\n" +
 
