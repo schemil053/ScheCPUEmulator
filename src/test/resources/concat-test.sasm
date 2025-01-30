@@ -1,0 +1,12 @@
+reserve string1 20
+var string1 "Hallo"
+
+#var stringtmp "Hallöchen"
+#println stringtmp
+
+reserve string2 10
+var string2 "Welt"
+
+concatvstr string1 string2
+
+println string1

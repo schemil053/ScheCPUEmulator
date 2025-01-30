@@ -136,6 +136,7 @@ public class HighProgramCompiler {
                         "STORE BOOL 1\n" + // Altes Register speichern
                         "STORE A 2\n" + // Altes Register speichern
                         "STORE B 3\n" + // Altes Register speichern
+                        "ADDMM "+addr1+" "+addr2+"\n"+
                         "STOREMEM 4 0\n" +
                         "FUNC mem_concat_" + func + "\n" +
                         "\n"+

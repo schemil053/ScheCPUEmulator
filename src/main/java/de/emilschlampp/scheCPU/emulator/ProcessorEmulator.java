@@ -327,21 +327,27 @@ public class ProcessorEmulator {
                 break;
             case ADDMM_OPCODE:
                 memory[instruction.getAddress()]+=memory[instruction.getAddressS()];
+                jmp++;
                 break;
             case SUBMM_OPCODE:
                 memory[instruction.getAddress()]-=memory[instruction.getAddressS()];
+                jmp++;
                 break;
             case DIVMM_OPCODE:
                 memory[instruction.getAddress()]/=memory[instruction.getAddressS()];
+                jmp++;
                 break;
             case MULMM_OPCODE:
                 memory[instruction.getAddress()]*=memory[instruction.getAddressS()];
+                jmp++;
                 break;
             case STOREREGM_OPCODE:
                 register[instruction.getRegisterID()] = memory[memory[instruction.getAddress()]];
+                jmp++;
                 break;
             case LOADREGM_OPCODE:
                 memory[memory[instruction.getAddress()]] = register[instruction.getRegisterID()];
+                jmp++;
                 break;
             default:
                 throw new RuntimeException("not implemented: " + instruction.getOpCode());
