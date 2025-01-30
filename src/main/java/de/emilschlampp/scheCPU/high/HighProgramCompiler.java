@@ -130,23 +130,53 @@ public class HighProgramCompiler {
                         "OUTWM 5 20"
                  */
 
+                System.out.println("Var1: "+addr1+" "+addr2);
+
                 code = code + "\n" +
-                        "ADDMM " + addr1 + " " + addr2 + "\n" +
                         "INWM 5 20\n" + //BJMP speichern
                         "STORE BOOL 1\n" + // Altes Register speichern
                         "STORE A 2\n" + // Altes Register speichern
                         "STORE B 3\n" + // Altes Register speichern
-                        "ADDMM "+addr1+" "+addr2+"\n"+
-                        "STOREMEM 4 0\n" +
-                        "FUNC mem_concat_" + func + "\n" +
-                        "\n"+
-                        "CMPM A 4\n" +
+                        "STORE C 4\n" + // Altes Register speichern
+                        "STORE D 5\n" + // Altes Register speichern
+                        "LOAD A 0\n" +
+                        "LOAD B "+addr2+ "\n" +
+                        "LOAD C "+addr1+ "\n" +
+                        "ADD C 1\n"+
+                        "STORE B 7\n" +
+                        "STORE C 8\n" +
+                        "ADDMM 8 "+addr1+"\n" +
+                        "SUBM 8 1\n"+
+                        "STOREREG "+addr2+ " A\n" +
+                        "ADD B 1\n"+
+                        "OUTW 1 1\n"+
+
+                        "CMPM A 6\n"+ // Prevent zero len string
+                        "CZJMP end_" + func1 + "\n" +
+                        "CNJMP end_" + func1 + "\n" +
+
+
+                        "FUNC mem_concat_" + func + "\n" + // for loop
+                        "ADDM 6 1\n"+
+                        "ADDM 7 1\n"+
+                        "ADDM 8 1\n"+
+                        "OUTW 34 34\n"+
+                        "STOREREGM 7 D\n"+
+                        "LOADREGM D 8\n"+
+                      //  "OUTW 2 1\n"+
+                      //  "OUTW 1 1\n"+
+                        "CMPM A 6\n" + // end for loop
                         "CJMP mem_concat_" + func + "\n" +
 
                         "FUNC end_" + func1 + "\n" +
+                        "OUTW 34 35\n"+
+                        "ADDMM "+addr1+" "+addr2+"\n"+ // Stringlänge verändern
+                        "OUTW 1 1\n"+
                         "LOADMEM BOOL 1\n" +
                         "LOADMEM A 2\n" +
                         "LOADMEM B 3\n" +
+                        "LOADMEM C 4\n" +
+                        "LOADMEM D 5\n" +
                         "OUTWM 5 20"
                 ;
             } else if (split[0].equals("ret")) {

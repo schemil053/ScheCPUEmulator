@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class HighQuickRunTest {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/concat-test.sasm"));
+        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/concat-test.shf"));
         String l = "";
         while (scanner.hasNextLine()) {
             l+="\n"+scanner.nextLine();
@@ -20,7 +20,7 @@ public class HighQuickRunTest {
 
         byte[] code = new HighProgramCompiler(l).toBytecode();
 
-        System.out.println(new Decompiler(code).decompile());
+        //System.out.println(new Decompiler(code).decompile());
 
         ProcessorEmulator emulator = new ProcessorEmulator(512, 512, code);
         while (emulator.canExecute()) {

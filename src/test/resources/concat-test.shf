@@ -1,0 +1,19 @@
+reserve string1 30
+var string1 "Hallo "
+
+var stringtmp "Hallöchen"
+println stringtmp
+
+reserve string2 10
+var string2 "Welt Gay"
+
+reserve string3 10
+var string3 " Hi"
+
+concatvstr string1 string2
+
+var string_log "Log: A"
+println string_log
+concatvstr string1 string3
+
+println string1
