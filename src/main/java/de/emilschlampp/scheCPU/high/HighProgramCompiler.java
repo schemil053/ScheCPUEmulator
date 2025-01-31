@@ -110,28 +110,8 @@ public class HighProgramCompiler {
                 int func = tmpFuncID++;
                 int func1 = tmpFuncID++;
 
-                /*
-                               "INWM 5 20\n" + // BJMP speichern
-                        "STORE BOOL 1\n" + // Altes Register speichern
-                        "STOREMEM 2 0\n" +
-                        "LOADMEM A " + address + "\n" +
-                        "STOREMEM 3 " + (address + 1) + "\n" + // +1 weil auf der Adresse ja die Anzahl der Zeichen liegt (und addresse+1 = erstes Zeichen)
-                        "FUNC tmp_" + f1 + "\n" +
-                        "CMPM A 2\n" +
-                        "CJMP printChar_" + f2 + "\n" +
-                        "JMP end_" + f3 + "\n" +
-                        "FUNC printChar_" + f2 + "\n" +
-                        "OUTWDM " + options.getOrDefault("io-print-port", "34") + " 3\n" +
-                        "ADDM 3 1\n" +
-                        "ADDM 2 1\n" +
-                        "JMP tmp_" + f1 + "\n" +
-                        "FUNC end_" + f3 + "\n" +
-                        "LOADMEM BOOL 1\n" +
-                        "OUTWM 5 20"
-                 */
-
-                System.out.println("Var1: "+addr1+" "+addr2);
-                System.out.println("Address (maybe?) "+ (code.split("\n").length));
+                //System.out.println("Var1: "+addr1+" "+addr2);
+                //System.out.println("Address (maybe?) "+ (code.split("\n").length));
 
                 code = code + "\n" +
                         "INWM 5 20\n" + //BJMP speichern
@@ -149,7 +129,7 @@ public class HighProgramCompiler {
                         "ADDMM 8 "+addr1+"\n" + // move pointer to point at the end of string from addr1
                         "STOREREG "+addr2+ " A\n" + // save string len in A
                         "ADD B 1\n"+ // Move address pointer (at B directly is len stored)
-                        "OUTW 1 1\n"+
+                        //"OUTW 1 1\n"+
 
                         "CMPM A 6\n"+ // Prevent zero len string
                         "CZJMP end_" + func1 + "\n" +
@@ -160,18 +140,14 @@ public class HighProgramCompiler {
                         "ADDM 6 1\n"+
                         "ADDM 7 1\n"+
                         "ADDM 8 1\n"+
-                        "OUTW 34 34\n"+
                         "STOREREGM 7 D\n"+
                         "LOADREGM D 8\n"+
-                      //  "OUTW 2 1\n"+
-                      //  "OUTW 1 1\n"+
                         "CMPM A 6\n" + // a >
                         "CJMP mem_concat_" + func + "\n" + // end for loop
 
                         "FUNC end_" + func1 + "\n" +
-                        "OUTW 34 35\n"+
                         "ADDMM "+addr1+" "+addr2+"\n"+ // Stringlänge verändern
-                        "OUTW 1 1\n"+
+                        //"OUTW 1 1\n"+
                         "LOADMEM BOOL 1\n" +
                         "LOADMEM A 2\n" + // restore A
                         "LOADMEM B 3\n" + // restore B
