@@ -140,15 +140,13 @@ public class HighProgramCompiler {
                         "STORE C 4\n" + // Altes Register speichern
                         "STORE D 5\n" + // Altes Register speichern
                         "LOAD A 0\n" +
-                        "LOAD B "+addr2+ "\n" +
-                        "LOAD C "+addr1+ "\n" +
-                        "ADD C 1\n"+
-                        "STORE B 7\n" +
-                        "STORE C 8\n" +
-                        "ADDMM 8 "+addr1+"\n" +
-                        "SUBM 8 1\n"+
-                        "STOREREG "+addr2+ " A\n" +
-                        "ADD B 1\n"+
+                        "LOAD B "+addr2+ "\n" + // load len of addr2 to B
+                        "LOAD C "+addr1+ "\n" + // load len of addr1 to C
+                        "STORE B 7\n" + // load addr2 stored in B to 7
+                        "STORE C 8\n" + // load addr1 stored in C to 8
+                        "ADDMM 8 "+addr1+"\n" + // move pointer to point at the end of string from addr1
+                        "STOREREG "+addr2+ " A\n" + // save string len in A
+                        "ADD B 1\n"+ // Move address pointer (at B directly is len stored)
                         "OUTW 1 1\n"+
 
                         "CMPM A 6\n"+ // Prevent zero len string
@@ -173,11 +171,11 @@ public class HighProgramCompiler {
                         "ADDMM "+addr1+" "+addr2+"\n"+ // Stringlänge verändern
                         "OUTW 1 1\n"+
                         "LOADMEM BOOL 1\n" +
-                        "LOADMEM A 2\n" +
-                        "LOADMEM B 3\n" +
-                        "LOADMEM C 4\n" +
-                        "LOADMEM D 5\n" +
-                        "OUTWM 5 20"
+                        "LOADMEM A 2\n" + // restore A
+                        "LOADMEM B 3\n" + // restore B
+                        "LOADMEM C 4\n" + // restore C
+                        "LOADMEM D 5\n" + // restore D
+                        "OUTWM 5 20" // restore BJMP
                 ;
             } else if (split[0].equals("ret")) {
                 if (currentMethod == null) {

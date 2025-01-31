@@ -5,7 +5,7 @@ var stringtmp "Hallöchen"
 println stringtmp
 
 reserve string2 10
-var string2 "Welt Gay"
+var string2 "Welt Pub"
 
 reserve string3 10
 var string3 " Hi"
