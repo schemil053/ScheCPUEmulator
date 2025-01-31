@@ -141,6 +141,7 @@ public class HighProgramCompiler {
                         "STORE C 4\n" + // Altes Register speichern
                         "STORE D 5\n" + // Altes Register speichern
                         "LOAD A 0\n" + // Set A to 0
+                        "STOREMEM 6 0\n" + // Set mem 6 to 0
                         "LOAD B "+addr2+ "\n" + // load len of addr2 to B
                         "LOAD C "+addr1+ "\n" + // load len of addr1 to C
                         "STORE B 7\n" + // load addr2 stored in B to 7
@@ -164,8 +165,8 @@ public class HighProgramCompiler {
                         "LOADREGM D 8\n"+
                       //  "OUTW 2 1\n"+
                       //  "OUTW 1 1\n"+
-                        "CMPM A 6\n" + // end for loop
-                        "CJMP mem_concat_" + func + "\n" +
+                        "CMPM A 6\n" + // a >
+                        "CJMP mem_concat_" + func + "\n" + // end for loop
 
                         "FUNC end_" + func1 + "\n" +
                         "OUTW 34 35\n"+
