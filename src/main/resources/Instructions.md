@@ -60,4 +60,5 @@
 | 4  | SLEEP_CYCLES | cycles to skip                                                             |
 | 5  | LAST_JMP     | last jmp address                                                           |
 | 6  | RESET        | resets the cpu                                                             |
+| 8  | FAULT        | sets the memory address of the fault handler                               |
 | 34 | SOUT         | Prints ascii char to console                                               |

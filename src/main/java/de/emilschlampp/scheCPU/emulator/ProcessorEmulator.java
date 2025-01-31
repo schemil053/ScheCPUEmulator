@@ -400,6 +400,16 @@ public class ProcessorEmulator {
         }
     }
 
+    public boolean fault(int errcode) {
+        if(restrictions.isAllowFault()) {
+            register[REGID_A] = errcode;
+            register[REGID_B] = jmp; // tell the program where the error is
+            jmp = io[8]; // jump to fault handler
+            return true;
+        }
+        return false;
+    }
+
     public int[] getMemory() {
         return memory;
     }
