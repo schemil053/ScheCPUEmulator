@@ -41,9 +41,7 @@ public class CPUExecuteTest {
         processorEmulator.fault(5);
         while (processorEmulator.canExecute()) {
             processorEmulator.execute();
-            if(processorEmulator.getMemory()[2] > 15) {
-                break;
-            }
+            Assertions.assertFalse(processorEmulator.getMemory()[2] > 6); // the code should end after the fault
         }
 
         Assertions.assertEquals(1, processorEmulator.getMemory()[3]);
