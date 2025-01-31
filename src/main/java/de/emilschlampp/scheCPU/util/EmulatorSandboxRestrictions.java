@@ -3,6 +3,7 @@ package de.emilschlampp.scheCPU.util;
 public class EmulatorSandboxRestrictions {
     private boolean allowOutput = true;
     private boolean allowReset = true;
+    private boolean allowFault = true;
 
 
     public boolean isAllowOutput() {
@@ -20,6 +21,15 @@ public class EmulatorSandboxRestrictions {
 
     public EmulatorSandboxRestrictions setAllowReset(boolean allowReset) {
         this.allowReset = allowReset;
+        return this;
+    }
+
+    public boolean isAllowFault() {
+        return allowFault;
+    }
+
+    public EmulatorSandboxRestrictions setAllowFault(boolean allowFault) {
+        this.allowFault = allowFault;
         return this;
     }
 }
