@@ -26,6 +26,7 @@ Die Sprache ist wie folgt aufgebaut:
 | putnot      | <Variable>               | Verneint den angegebene Boolean                                                                                                                                                                                                                           |
 | out         | <Variable> <Port>        | Gibt etwas auf dem IO-Port aus                                                                                                                                                                                                                            |
 | in          | <Variable> <Port>        | Speichert den Wert auf Port in der Variable                                                                                                                                                                                                               |
+| concatvstr  | <Variable1> <Variable2>  | Verbindet den String in Variable1 mit Variable2, das Resultat wird in Variable1 geschrieben                                                                                                                                                               |
 
 Natürlich können Erweiterungen und PreCompiler die Möglichkeiten und Befehle erweitern.
 
