@@ -60,7 +60,7 @@ Dieser Emulator läuft im "locked-down"-Modus: Programme werden beim Start in ei
 ### Register
 - Die CPU hat 5 Register:
    - A, B, C, D: derzeit unbenutzt (highlang verwendet sie, aber ich möchte in Zukunft weitere Funktionen hinzufügen, die auf ihnen basieren).
-   - BOOL: Das BOOL-Register speichert das Ergebnis der letzten Operation.
+   - BOOL: Das BOOL-Register speichert das Ergebnis der letzten boolean-zurückgebenden Operation.
 
 ### Speicherverwaltung
 - Die Speicherverwaltung in diesem Emulator ist vereinfacht und umfasst eine klare Trennung zwischen Programmcode und Daten.
