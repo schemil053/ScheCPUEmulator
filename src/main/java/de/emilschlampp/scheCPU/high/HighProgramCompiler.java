@@ -92,6 +92,69 @@ public class HighProgramCompiler {
                 } else {
                     error("not found! available: variable, option");
                 }
+            } else if (split[0].equals("concatvstr")) {
+                String varname1 = split[1];
+                String varname2 = split[2];
+
+                if (protectedVariables.contains(varname1)) {
+                    error("access violation!");
+                }
+
+                if (!variableAddresses.containsKey(varname1) || !variableAddresses.containsKey(varname2)) {
+                    error("variable not found!");
+                }
+
+                int addr1 = variableAddresses.get(varname1);
+                int addr2 = variableAddresses.get(varname2);
+
+                int func = tmpFuncID++;
+                int func1 = tmpFuncID++;
+
+                //System.out.println("Var1: "+addr1+" "+addr2);
+                //System.out.println("Address (maybe?) "+ (code.split("\n").length));
+
+                code = code + "\n" +
+                        "INWM 5 20\n" + //BJMP speichern
+                        "STORE BOOL 1\n" + // Altes Register speichern
+                        "STORE A 2\n" + // Altes Register speichern
+                        "STORE B 3\n" + // Altes Register speichern
+                        "STORE C 4\n" + // Altes Register speichern
+                        "STORE D 5\n" + // Altes Register speichern
+                        "LOAD A 0\n" + // Set A to 0
+                        "STOREMEM 6 0\n" + // Set mem 6 to 0
+                        "LOAD B "+addr2+ "\n" + // load len of addr2 to B
+                        "LOAD C "+addr1+ "\n" + // load len of addr1 to C
+                        "STORE B 7\n" + // load addr2 stored in B to 7
+                        "STORE C 8\n" + // load addr1 stored in C to 8
+                        "ADDMM 8 "+addr1+"\n" + // move pointer to point at the end of string from addr1
+                        "STOREREG "+addr2+ " A\n" + // save string len in A
+                        "ADD B 1\n"+ // Move address pointer (at B directly is len stored)
+                        //"OUTW 1 1\n"+
+
+                        "CMPM A 6\n"+ // Prevent zero len string
+                        "CZJMP end_" + func1 + "\n" +
+                        "CNJMP end_" + func1 + "\n" +
+
+
+                        "FUNC mem_concat_" + func + "\n" + // for loop
+                        "ADDM 6 1\n"+
+                        "ADDM 7 1\n"+
+                        "ADDM 8 1\n"+
+                        "STOREREGM 7 D\n"+
+                        "LOADREGM D 8\n"+
+                        "CMPM A 6\n" + // a >
+                        "CJMP mem_concat_" + func + "\n" + // end for loop
+
+                        "FUNC end_" + func1 + "\n" +
+                        "ADDMM "+addr1+" "+addr2+"\n"+ // Stringlänge verändern
+                        //"OUTW 1 1\n"+
+                        "LOADMEM BOOL 1\n" +
+                        "LOADMEM A 2\n" + // restore A
+                        "LOADMEM B 3\n" + // restore B
+                        "LOADMEM C 4\n" + // restore C
+                        "LOADMEM D 5\n" + // restore D
+                        "OUTWM 5 20" // restore BJMP
+                ;
             } else if (split[0].equals("ret")) {
                 if (currentMethod == null) {
                     error("can only be called inside a method!");
@@ -202,7 +265,7 @@ public class HighProgramCompiler {
                 }
             } else if (split[0].equals("method")) {
                 if (!ifStack.isEmpty()) {
-                    error("double if!");
+                    error("double method!");
                 }
 
                 String name = split[1];
@@ -265,12 +328,12 @@ public class HighProgramCompiler {
 
                 code = code + "\n" +
                         "STORE BOOL 7\n" +
-                        "CMPMEM "+variableAddresses.get(var1)+" "+variableAddresses.get(var2)+"\n" +
-                        "CZJMP start_"+f1+"\n" +
-                        "JMP end_"+f2+"\n" +
-                        "FUNC start_"+f1+"\n" +
-                        "STOREMEM "+variableAddresses.get(target)+" 1\n" +
-                        "FUNC end_"+f2+"\n" +
+                        "CMPMEM " + variableAddresses.get(var1) + " " + variableAddresses.get(var2) + "\n" +
+                        "CZJMP start_" + f1 + "\n" +
+                        "JMP end_" + f2 + "\n" +
+                        "FUNC start_" + f1 + "\n" +
+                        "STOREMEM " + variableAddresses.get(target) + " 1\n" +
+                        "FUNC end_" + f2 + "\n" +
                         "LOADMEM BOOL 7"; //TODO: Fertig coden
             } else if (split[0].equals("print")) {
                 String val = split[1];
@@ -290,7 +353,7 @@ public class HighProgramCompiler {
                         "STORE BOOL 1\n" + // Altes Register speichern
                         "STOREMEM 2 0\n" +
                         "LOADMEM A " + address + "\n" +
-                        "STOREMEM 3 " + (address + 1) + "\n" + // +1 weil auf der Adresse ja die Anzahl der Zeichen liegt (und addresse+1 = erstes Zeichen)
+                        "STOREMEM 3 " + (address + 1) + "\n" + // +1, weil auf der Adresse ja die Anzahl der Zeichen liegt (und Adresse+1 = erstes Zeichen)
                         "FUNC tmp_" + f1 + "\n" +
                         "CMPM A 2\n" +
                         "CJMP printChar_" + f2 + "\n" +
@@ -304,12 +367,12 @@ public class HighProgramCompiler {
                         "LOADMEM BOOL 1\n" +
                         "OUTWM 5 20"
                 ;
-            } else if(split[0].equals("out")) {
+            } else if (split[0].equals("out")) {
                 String val = split[1];
 
                 String portVal = split[2];
 
-                if(!isInt(portVal)) {
+                if (!isInt(portVal)) {
                     error("invalid port!");
                 }
 
@@ -322,13 +385,13 @@ public class HighProgramCompiler {
                 int address = variableAddresses.get(val);
 
                 code = code + "\n" +
-                        "OUTWM "+port+" "+address;
-            } else if(split[0].equals("in")) {
+                        "OUTWM " + port + " " + address;
+            } else if (split[0].equals("in")) {
                 String val = split[1];
 
                 String portVal = split[2];
 
-                if(!isInt(portVal)) {
+                if (!isInt(portVal)) {
                     error("invalid port!");
                 }
 
@@ -341,7 +404,7 @@ public class HighProgramCompiler {
                 int address = variableAddresses.get(val);
 
                 code = code + "\n" +
-                        "INWM "+port+" "+address;
+                        "INWM " + port + " " + address;
             } else if (split[0].equals("println")) {
                 String val = split[1];
 
@@ -391,18 +454,18 @@ public class HighProgramCompiler {
                 code = code + "\n" +
                         "MULM " + address + " -1\n" +
                         "ADDM " + address + " 1";
-            } else if(split[0].equals("asm")) {
-                if(options.getOrDefault("disable-asm", "0").equals("1")) {
+            } else if (split[0].equals("asm")) {
+                if (options.getOrDefault("disable-asm", "0").equals("1")) {
                     error("asm is disabled");
                 }
                 String asm = "";
                 for (int i = 1; i < split.length; i++) {
-                    asm += (" "+split[i]);
+                    asm += (" " + split[i]);
                 }
-                if(!asm.isEmpty()) {
+                if (!asm.isEmpty()) {
                     asm = asm.substring(1);
                 }
-                code = code+"\n"+asm;
+                code = code + "\n" + asm;
             } else {
                 if (compileProcessor != null) {
                     String a = compileProcessor.generateSchesemForInstruction(compileContext, split);
@@ -440,7 +503,7 @@ public class HighProgramCompiler {
     }
 
     private int parseInt(String i) {
-        if(!isInt(i)) {
+        if (!isInt(i)) {
             throw new RuntimeException("Expected Integer");
         }
         return Integer.parseInt(i);

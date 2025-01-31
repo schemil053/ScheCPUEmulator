@@ -62,7 +62,7 @@ This emulator runs in a "locked-down" mode: programs are loaded at compile-time,
 ### Registers
 - The CPU has 5 registers:
    - A, B, C, D: currently unused (highlang uses them, but I want to add more functions that rely on them in the future)
-   - BOOL: The bool register stores the result of the last operation
+   - BOOL: The bool register stores the result of the last boolean-resulting operation
 
 ### Memory management
 - The memory management in this emulator is simplified but includes a distinct separation between program instructions and data. 
@@ -155,7 +155,7 @@ mvn install
 </dependency>
 ```
 
-[## Programming Languages
+## Programming Languages
 There are 2 Languages that this default configuration can compile and understand.
 The first one is Schessembler. It's an assembly-like language with a custom instruction set.
 The second one is Highlang. It converts to Schessembler, wich converts to bytecode.
@@ -172,7 +172,7 @@ Structure
 ```text
 command <arg1> <arg2> <arg...>...
 ```
-You can find all available Instructions [here](src/main/resources/Highlang.md)]()
+You can find all available Instructions [here](src/main/resources/Highlang.md)
 
 ## Examples
 ### Schessembler Examples

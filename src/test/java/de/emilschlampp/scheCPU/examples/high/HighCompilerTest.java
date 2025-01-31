@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class HighCompilerTest {
     public static void main(String[] args) throws Throwable {
-        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/simple-loadstrm.sasm"));
+        Scanner scanner = new Scanner(Main.class.getResourceAsStream("/concat-test.sasm"));
         String l = "";
         while (scanner.hasNextLine()) {
             l+="\n"+scanner.nextLine();

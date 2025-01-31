@@ -148,6 +148,30 @@ public class Instruction {
         if(instruction.opCode == CZMJMP_OPCODE) {
             instruction.address = FolderIOUtil.readInt(inputStream);
         }
+        if(instruction.opCode == ADDMM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
+        if(instruction.opCode == SUBMM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
+        if(instruction.opCode == DIVMM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
+        if(instruction.opCode == MULMM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
+        if(instruction.opCode == STOREREGM_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.registerID = inputStream.read();
+        }
+        if(instruction.opCode == LOADREGM_OPCODE) {
+            instruction.registerID = inputStream.read();
+            instruction.address = FolderIOUtil.readInt(inputStream);
+        }
 
         return instruction;
     }
