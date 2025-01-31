@@ -131,6 +131,7 @@ public class HighProgramCompiler {
                  */
 
                 System.out.println("Var1: "+addr1+" "+addr2);
+                System.out.println("Address (maybe?) "+ (code.split("\n").length));
 
                 code = code + "\n" +
                         "INWM 5 20\n" + //BJMP speichern
@@ -139,7 +140,7 @@ public class HighProgramCompiler {
                         "STORE B 3\n" + // Altes Register speichern
                         "STORE C 4\n" + // Altes Register speichern
                         "STORE D 5\n" + // Altes Register speichern
-                        "LOAD A 0\n" +
+                        "LOAD A 0\n" + // Set A to 0
                         "LOAD B "+addr2+ "\n" + // load len of addr2 to B
                         "LOAD C "+addr1+ "\n" + // load len of addr1 to C
                         "STORE B 7\n" + // load addr2 stored in B to 7

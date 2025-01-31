@@ -359,8 +359,18 @@ public class ProcessorEmulator {
                 io[34] = 0;
             }
             if (io[1] != 0) {
+                System.out.println();
+                System.out.println("------------------------------ [ DEBUG ] ------------------------------");
+                System.out.println("Debug trigger triggered (IO 1), jmp="+jmp);
                 System.out.println("REG: " + Arrays.toString(register));
                 System.out.println("MEM: " + Arrays.toString(memory));
+
+                Decompiler decompiler = new Decompiler(instructions);
+
+                for (int i = -3; i <= 3; i++) {
+                    System.out.println((i == 0 ? "-> " : "   ") + (jmp+i) + " " + decompiler.decompileInstruction(jmp+i));
+                }
+
                 io[1] = 0;
             }
             if (io[2] != 0) {
