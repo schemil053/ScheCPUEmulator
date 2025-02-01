@@ -15,8 +15,6 @@ public class HighLangPreprocessor {
     }
 
     public HighLangPreprocessor preprocess() {
-        //TODO 01.02.2025 ~ifdef, ~define, ~ifndef, ~undef
-
         List<String> programSplit = new ArrayList<>(Arrays.asList(program.split("\n")));
         Map<String, Boolean> definedMacros = new HashMap<>();
 
@@ -33,13 +31,23 @@ public class HighLangPreprocessor {
                 if(split[0].equals("include")) {
                     InputStream in = null;
 
+                    if(!preprocessorEnvironment.isAllowFileInclusion()) {
+                        throw new RuntimeException("File inclusion not allowed!");
+                    }
+
+                    if(preprocessorEnvironment.isFileInclusionWhiteList()) {
+                        if(!preprocessorEnvironment.getFileInclusionWhitelist().contains(split[1])) {
+                            throw new RuntimeException("Non-whitelisted file!");
+                        }
+                    }
+
                     try {
                         in = preprocessorEnvironment.getFileInputStreamCreator().apply(split[1]);
                     } catch (IOException throwable) {
-                        throw new RuntimeException(throwable);
+                        throw new RuntimeException("Error while opening the include file!", throwable);
                     }
                     if(in == null) {
-                        throw new RuntimeException(); //TODO 01.02.2025 err
+                        throw new RuntimeException("The include file does not exist!");
                     }
 
                     Scanner scanner = new Scanner(in);
@@ -51,7 +59,7 @@ public class HighLangPreprocessor {
                     }
                 } else if(split[0].equals("define")) {
                     if(split.length == 2) {
-                        definedMacros.put(split[1], true); //TODO 01.02.2025 Values
+                        definedMacros.put(split[1], true);
                     }
                 } else if(split[0].equals("undef")) {
                     if(split.length == 2) {
@@ -59,7 +67,7 @@ public class HighLangPreprocessor {
                     }
                 } else if(split[0].equals("ifdef")) {
                     if(split.length != 2) {
-                        throw new RuntimeException();
+                        throw new RuntimeException("Invalid arg len!");
                     }
 
                     String macro = split[1];
@@ -79,7 +87,7 @@ public class HighLangPreprocessor {
                     }
                 } else if(split[0].equals("ifndef")) {
                     if(split.length != 2) {
-                        throw new RuntimeException();
+                        throw new RuntimeException("Invalid arg len!");
                     }
 
                     String macro = split[1];
