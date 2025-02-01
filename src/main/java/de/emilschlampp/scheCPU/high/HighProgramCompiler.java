@@ -466,6 +466,54 @@ public class HighProgramCompiler {
                     asm = asm.substring(1);
                 }
                 code = code + "\n" + asm;
+            } else if(split[0].equals("add")) {
+                if(protectedVariables.contains(split[1])) {
+                    error("access violation!");
+                }
+
+                if(!isInt(split[2])) {
+                    code = code + "\n" +
+                            "ADDMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                } else {
+                    code = code + "\n" +
+                            "ADDM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                }
+            } else if(split[0].equals("sub")) {
+                if(protectedVariables.contains(split[1])) {
+                    error("access violation!");
+                }
+
+                if(!isInt(split[2])) {
+                    code = code + "\n" +
+                            "SUBMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                } else {
+                    code = code + "\n" +
+                            "SUBM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                }
+            } else if(split[0].equals("mul")) {
+                if(protectedVariables.contains(split[1])) {
+                    error("access violation!");
+                }
+
+                if(!isInt(split[2])) {
+                    code = code + "\n" +
+                            "MULMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                } else {
+                    code = code + "\n" +
+                            "MULM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                }
+            } else if(split[0].equals("div")) {
+                if(protectedVariables.contains(split[1])) {
+                    error("access violation!");
+                }
+
+                if(!isInt(split[2])) {
+                    code = code + "\n" +
+                            "DIVMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                } else {
+                    code = code + "\n" +
+                            "DIVM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                }
             } else {
                 if (compileProcessor != null) {
                     String a = compileProcessor.generateSchesemForInstruction(compileContext, split);
