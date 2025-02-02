@@ -434,7 +434,7 @@ public class HighProgramCompiler {
                         "ADDM 2 1\n" +
                         "JMP tmp_" + f1 + "\n" +
                         "FUNC end_" + f3 + "\n" +
-                        "OUTW " + options.getOrDefault("io-print-port", "34") + " 10\n" +
+                        "OUTW " + options.getOrDefault("io-print-port", "34") + " 10\n" + // \n
                         "LOADMEM BOOL 1\n" +
                         "OUTWM 5 20"
                 ;
