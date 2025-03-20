@@ -367,6 +367,39 @@ public class HighProgramCompiler {
                         "LOADMEM BOOL 1\n" +
                         "OUTWM 5 20"
                 ;
+            } else if (split[0].equals("writestring")) {
+                String port = split[1];
+                String val = split[2];
+
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address = variableAddresses.get(val);
+
+                int f1 = tmpFuncID++;
+                int f2 = tmpFuncID++;
+                int f3 = tmpFuncID++;
+
+                code = code + "\n" +
+                        "INWM 5 20\n" + // BJMP speichern
+                        "STORE BOOL 1\n" + // Altes Register speichern
+                        "STOREMEM 2 0\n" +
+                        "LOADMEM A " + address + "\n" +
+                        "STOREMEM 3 " + (address + 1) + "\n" + // +1, weil auf der Adresse ja die Anzahl der Zeichen liegt (und Adresse+1 = erstes Zeichen)
+                        "FUNC tmp_" + f1 + "\n" +
+                        "CMPM A 2\n" +
+                        "CJMP printChar_" + f2 + "\n" +
+                        "JMP end_" + f3 + "\n" +
+                        "FUNC printChar_" + f2 + "\n" +
+                        "OUTWDM " + port + " 3\n" +
+                        "ADDM 3 1\n" +
+                        "ADDM 2 1\n" +
+                        "JMP tmp_" + f1 + "\n" +
+                        "FUNC end_" + f3 + "\n" +
+                        "LOADMEM BOOL 1\n" +
+                        "OUTWM 5 20"
+                ;
             } else if (split[0].equals("out")) {
                 String val = split[1];
 
@@ -435,6 +468,40 @@ public class HighProgramCompiler {
                         "JMP tmp_" + f1 + "\n" +
                         "FUNC end_" + f3 + "\n" +
                         "OUTW " + options.getOrDefault("io-print-port", "34") + " 10\n" + // \n
+                        "LOADMEM BOOL 1\n" +
+                        "OUTWM 5 20"
+                ;
+            } else if (split[0].equals("writestringln")) {
+                String port = split[1];
+                String val = split[2];
+
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address = variableAddresses.get(val);
+
+                int f1 = tmpFuncID++;
+                int f2 = tmpFuncID++;
+                int f3 = tmpFuncID++;
+
+                code = code + "\n" +
+                        "INWM 5 20\n" + // BJMP speichern
+                        "STORE BOOL 1\n" + // Altes Register speichern
+                        "STOREMEM 2 0\n" +
+                        "LOADMEM A " + address + "\n" +
+                        "STOREMEM 3 " + (address + 1) + "\n" + // +1 weil auf der Adresse ja die Anzahl der Zeichen liegt (und addresse+1 = erstes Zeichen)
+                        "FUNC tmp_" + f1 + "\n" +
+                        "CMPM A 2\n" +
+                        "CJMP printChar_" + f2 + "\n" +
+                        "JMP end_" + f3 + "\n" +
+                        "FUNC printChar_" + f2 + "\n" +
+                        "OUTWDM " + port + " 3\n" +
+                        "ADDM 3 1\n" +
+                        "ADDM 2 1\n" +
+                        "JMP tmp_" + f1 + "\n" +
+                        "FUNC end_" + f3 + "\n" +
+                        "OUTW " + port + " 10\n" + // \n
                         "LOADMEM BOOL 1\n" +
                         "OUTWM 5 20"
                 ;
