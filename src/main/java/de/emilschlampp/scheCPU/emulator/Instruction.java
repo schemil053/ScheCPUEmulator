@@ -176,6 +176,10 @@ public class Instruction {
             instruction.address = FolderIOUtil.readInt(inputStream);
             instruction.addressS = FolderIOUtil.readInt(inputStream);
         }
+        if(instruction.opCode == INWMP_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
 
         return instruction;
     }

@@ -185,6 +185,9 @@ public class Decompiler {
         if(instruction.getOpCode() == OUTWMP_OPCODE) {
             line = "OUTWMP "+instruction.getAddress()+" "+instruction.getAddressS();
         }
+        if(instruction.getOpCode() == INWMP_OPCODE) {
+            line = "INWMP "+instruction.getAddress()+" "+instruction.getAddressS();
+        }
         return line;
     }
 
