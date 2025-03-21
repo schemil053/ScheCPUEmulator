@@ -33,6 +33,7 @@
 | DIVMM \<ADDR\> \<PTR\>            | divide memory value by PTR                               |                                                                                                                               |
 | OUTW \<PORT\> \<VAL\>             | outputs val on port                                      |                                                                                                                               |
 | OUTWM \<PORT\> \<ADDR\>           | outputs memory value on port                             |                                                                                                                               |
+| OUTWMP \<ADDR1\> \<ADDR2\>        | outputs memory value on port at addr in memory           |                                                                                                                               |
 | OUTWDM \<PORT\> \<PTR\>           | outputs memory value at value of memory address on port  | Lookup address, and outputs it                                                                                                |
 | OUTWR \<PORT\> \<REGISTER\>       | outputs register value on port                           |                                                                                                                               |
 | INWM \<PORT\> \<ADDR\>            | reads PORT to ADDR                                       |                                                                                                                               |

@@ -182,6 +182,9 @@ public class Decompiler {
         if(instruction.getOpCode() == MULMM_OPCODE) {
             line = "MULMM "+instruction.getAddress()+" "+instruction.getAddressS();
         }
+        if(instruction.getOpCode() == OUTWMP_OPCODE) {
+            line = "OUTWMP "+instruction.getAddress()+" "+instruction.getAddressS();
+        }
         return line;
     }
 
