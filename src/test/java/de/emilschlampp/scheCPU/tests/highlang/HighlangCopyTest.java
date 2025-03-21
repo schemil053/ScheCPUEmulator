@@ -5,6 +5,8 @@ import de.emilschlampp.scheCPU.high.HighProgramCompiler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class HighlangCopyTest {
     @Test
     public void testHighlangCopyFunction() {
@@ -36,7 +38,7 @@ public class HighlangCopyTest {
 
         Assertions.assertNotEquals(-1, initial);
 
-        Assertions.assertEquals(344, emulator.getIo()[initial]);
+        Assertions.assertEquals(344, emulator.getMemory()[initial]);
 
     }
 }
