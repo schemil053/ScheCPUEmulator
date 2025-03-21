@@ -419,6 +419,38 @@ public class HighProgramCompiler {
 
                 code = code + "\n" +
                         "OUTWM " + port + " " + address;
+            } else if (split[0].equals("outvar")) {
+                String portV = split[1];
+                String val = split[2];
+
+                if (!variableAddresses.containsKey(portV)) {
+                    error("variable not found!");
+                }
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address1 = variableAddresses.get(portV);
+                int address2 = variableAddresses.get(val);
+
+                code = code + "\n" +
+                        "OUTWMP " + address1 + " " + address2;
+            } else if (split[0].equals("invar")) {
+                String portV = split[1];
+                String val = split[2];
+
+                if (!variableAddresses.containsKey(portV)) {
+                    error("variable not found!");
+                }
+                if (!variableAddresses.containsKey(val)) {
+                    error("variable not found!");
+                }
+
+                int address1 = variableAddresses.get(portV);
+                int address2 = variableAddresses.get(val);
+
+                code = code + "\n" +
+                        "INWMP " + address1 + " " + address2;
             } else if (split[0].equals("in")) {
                 String val = split[1];
 

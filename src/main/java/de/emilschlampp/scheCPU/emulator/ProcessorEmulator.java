@@ -3,15 +3,15 @@ package de.emilschlampp.scheCPU.emulator;
 import de.emilschlampp.scheCPU.compile.Compiler;
 import de.emilschlampp.scheCPU.dissassembler.Decompiler;
 import de.emilschlampp.scheCPU.util.EmulatorSandboxRestrictions;
-import de.emilschlampp.scheCPU.util.StaticValues;
 import de.emilschlampp.scheCPU.util.FolderIOUtil;
-
-import static de.emilschlampp.scheCPU.util.StaticValues.*;
+import de.emilschlampp.scheCPU.util.StaticValues;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+
+import static de.emilschlampp.scheCPU.util.StaticValues.*;
 
 public class ProcessorEmulator {
     private final int[] memory;
@@ -49,7 +49,7 @@ public class ProcessorEmulator {
         try {
             int version = FolderIOUtil.readInt(inputStream);
 
-            if(version == 1_00) {
+            if (version == 1_00) {
                 this.jmp = FolderIOUtil.readInt(inputStream);
                 this.lastStoreVal = FolderIOUtil.readInt(inputStream);
 
@@ -277,6 +277,10 @@ public class ProcessorEmulator {
                 io[memory[instruction.getAddress()]] = memory[instruction.getAddressS()];
                 jmp++;
                 break;
+            case INWMP_OPCODE:
+                memory[instruction.getAddressS()] = io[memory[instruction.getAddress()]];
+                jmp++;
+                break;
             case OUTWM_OPCODE:
                 io[instruction.getPort()] = memory[instruction.getAddress()];
                 jmp++;
@@ -330,19 +334,19 @@ public class ProcessorEmulator {
                 }
                 break;
             case ADDMM_OPCODE:
-                memory[instruction.getAddress()]+=memory[instruction.getAddressS()];
+                memory[instruction.getAddress()] += memory[instruction.getAddressS()];
                 jmp++;
                 break;
             case SUBMM_OPCODE:
-                memory[instruction.getAddress()]-=memory[instruction.getAddressS()];
+                memory[instruction.getAddress()] -= memory[instruction.getAddressS()];
                 jmp++;
                 break;
             case DIVMM_OPCODE:
-                memory[instruction.getAddress()]/=memory[instruction.getAddressS()];
+                memory[instruction.getAddress()] /= memory[instruction.getAddressS()];
                 jmp++;
                 break;
             case MULMM_OPCODE:
-                memory[instruction.getAddress()]*=memory[instruction.getAddressS()];
+                memory[instruction.getAddress()] *= memory[instruction.getAddressS()];
                 jmp++;
                 break;
             case STOREREGM_OPCODE:
@@ -357,7 +361,7 @@ public class ProcessorEmulator {
                 throw new RuntimeException("not implemented: " + instruction.getOpCode());
         }
 
-        if(restrictions.isAllowOutput()) {
+        if (restrictions.isAllowOutput()) {
             if (io[34] != 0) {
                 System.out.print((char) io[34]);
                 io[34] = 0;
@@ -365,14 +369,14 @@ public class ProcessorEmulator {
             if (io[1] != 0) {
                 System.out.println();
                 System.out.println("------------------------------ [ DEBUG ] ------------------------------");
-                System.out.println("Debug trigger triggered (IO 1), jmp="+jmp);
+                System.out.println("Debug trigger triggered (IO 1), jmp=" + jmp);
                 System.out.println("REG: " + Arrays.toString(register));
                 System.out.println("MEM: " + Arrays.toString(memory));
 
                 Decompiler decompiler = new Decompiler(instructions);
 
                 for (int i = -3; i <= 3; i++) {
-                    System.out.println((i == 0 ? "-> " : "   ") + (jmp+i) + " " + decompiler.decompileInstruction(jmp+i));
+                    System.out.println((i == 0 ? "-> " : "   ") + (jmp + i) + " " + decompiler.decompileInstruction(jmp + i));
                 }
 
                 io[1] = 0;
@@ -394,7 +398,7 @@ public class ProcessorEmulator {
         if (lastJMPBefore != io[5]) {
             lastJMP = io[5];
         }
-        if(restrictions.isAllowReset()) {
+        if (restrictions.isAllowReset()) {
             if (io[6] != 0) {
                 jmp = 0;
                 Arrays.fill(memory, 0);
@@ -405,7 +409,7 @@ public class ProcessorEmulator {
     }
 
     public boolean fault(int errcode) {
-        if(restrictions.isAllowFault()) {
+        if (restrictions.isAllowFault()) {
             register[REGID_A] = errcode;
             register[REGID_B] = jmp; // tell the program where the error is
             jmp = io[8]; // jump to fault handler

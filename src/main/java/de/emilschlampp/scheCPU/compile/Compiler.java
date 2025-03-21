@@ -373,6 +373,10 @@ public class Compiler {
                     outputStream.write(OUTWMP_OPCODE);
                     FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
                     FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
+                } else if (cmd[0].equals("INWMP")) {
+                    outputStream.write(INWMP_OPCODE);
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[1])); //Addr1
+                    FolderIOUtil.writeInt(outputStream, parseInt(cmd[2])); //Addr2
                 } else if (cmd[0].equals("LOADSTRM")) {
                     int address = parseInt(cmd[1]);
                     String val = "";

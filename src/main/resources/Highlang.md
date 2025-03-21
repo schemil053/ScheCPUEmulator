@@ -30,6 +30,7 @@ Die Sprache ist wie folgt aufgebaut:
 | writestring   | <Port> <Variable>        | Gibt die angegebene Variable aus                                                                                                                                                                                                                          |
 | writestringln | <Port> <Variable>        | Gibt die angegebene Variable aus und fügt ein \n hinzu                                                                                                                                                                                                    |
 | copy          | <Var1> <Var2>            | Kopiert Var2 zu Var1. Funktioniert nicht bei Strings!                                                                                                                                                                                                     |
+| outvar        | <Var1> <Var2>            | Gibt bei dem Port (Variable) auf var1 den wert von var2 aus                                                                                                                                                                                               |
 
 Natürlich können Erweiterungen und PreCompiler die Möglichkeiten und Befehle erweitern.
 
