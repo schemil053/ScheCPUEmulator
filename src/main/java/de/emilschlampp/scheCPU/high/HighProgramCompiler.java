@@ -533,6 +533,23 @@ public class HighProgramCompiler {
                     asm = asm.substring(1);
                 }
                 code = code + "\n" + asm;
+            } else if(split[0].equals("copy")) {
+                if(protectedVariables.contains(split[1])) {
+                    error("access violation!");
+                }
+
+                if (!variableAddresses.containsKey(split[1])) {
+                    error("variable not found!");
+                }
+
+
+                if (!variableAddresses.containsKey(split[2])) {
+                    error("variable not found!");
+                }
+
+                code = code + "\n" +
+                        "STOREMEM "+variableAddresses.get(split[1])+" 0\n"+
+                        "ADDMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
             } else if(split[0].equals("add")) {
                 if(protectedVariables.contains(split[1])) {
                     error("access violation!");

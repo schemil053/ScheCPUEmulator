@@ -29,6 +29,7 @@ Die Sprache ist wie folgt aufgebaut:
 | concatvstr    | <Variable1> <Variable2>  | Verbindet den String in Variable1 mit Variable2, das Resultat wird in Variable1 geschrieben                                                                                                                                                               |
 | writestring   | <Port> <Variable>        | Gibt die angegebene Variable aus                                                                                                                                                                                                                          |
 | writestringln | <Port> <Variable>        | Gibt die angegebene Variable aus und fügt ein \n hinzu                                                                                                                                                                                                    |
+| copy          | <Var1> <Var2>            | Kopiert Var2 zu Var1. Funktioniert nicht bei Strings!                                                                                                                                                                                                     |
 
 Natürlich können Erweiterungen und PreCompiler die Möglichkeiten und Befehle erweitern.
 
