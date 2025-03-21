@@ -273,6 +273,10 @@ public class ProcessorEmulator {
                 io[instruction.getPort()] = instruction.getValue();
                 jmp++;
                 break;
+            case OUTWMP_OPCODE:
+                io[memory[instruction.getAddress()]] = memory[instruction.getAddressS()];
+                jmp++;
+                break;
             case OUTWM_OPCODE:
                 io[instruction.getPort()] = memory[instruction.getAddress()];
                 jmp++;

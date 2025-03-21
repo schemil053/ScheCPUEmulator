@@ -172,6 +172,10 @@ public class Instruction {
             instruction.registerID = inputStream.read();
             instruction.address = FolderIOUtil.readInt(inputStream);
         }
+        if(instruction.opCode == OUTWMP_OPCODE) {
+            instruction.address = FolderIOUtil.readInt(inputStream);
+            instruction.addressS = FolderIOUtil.readInt(inputStream);
+        }
 
         return instruction;
     }

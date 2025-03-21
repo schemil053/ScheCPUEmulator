@@ -45,6 +45,7 @@ public class StaticValues {
     public static final int MULMM_OPCODE = 41;
     public static final int STOREREGM_OPCODE = 42;
     public static final int LOADREGM_OPCODE = 43;
+    public static final int OUTWMP_OPCODE = 44;
 
 
 
