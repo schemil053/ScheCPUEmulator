@@ -1,11 +1,14 @@
 package de.emilschlampp.scheCPU.tests.highlang;
 
 import de.emilschlampp.scheCPU.high.processor.CompileContext;
-import de.emilschlampp.scheCPU.high.processor.CompileProcessor;
+import de.emilschlampp.scheCPU.util.OCompileProcessor;
 
-public class HighlangIOCompileProcessor extends CompileProcessor {
+import java.util.Map;
+
+public class HighlangIOCompileProcessor extends OCompileProcessor {
     public static final int IO_PRINT = 129;
 
+    private Map<String, Integer> variableAddresses;
 
     @Override
     public void startCompile(CompileContext compileContext) {
@@ -14,27 +17,12 @@ public class HighlangIOCompileProcessor extends CompileProcessor {
     }
 
     @Override
-    public String generatePreCompileHigh() {
-        return "";
-    }
-
-    @Override
-    public String generatePreCompileHighEnd() {
-        return "";
-    }
-
-    @Override
-    public String generatePreCompileSCHESEM() {
-        return "";
-    }
-
-    @Override
-    public String generateSchesemForInstruction(CompileContext compileContext, String[] instruction) {
-        return "";
-    }
-
-    @Override
     public String generateAfterCompileSCHESEM(CompileContext compileContext) {
+        variableAddresses = compileContext.getVariableAddresses();
         return "";
+    }
+
+    public Map<String, Integer> getVariableAddresses() {
+        return variableAddresses;
     }
 }
