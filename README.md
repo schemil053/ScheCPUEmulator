@@ -181,7 +181,8 @@ You can find all available Instructions [here](src/main/resources/Highlang.md)
 
 ### Implementation
 - [Simple Compiler (Schessembler)](src/test/java/de/emilschlampp/scheCPU/examples/compile/CompilerTest.java)
-- [Simple Compiler (Highlang)](src/test/java/de/emilschlampp/scheCPU/examples/high/HighCompilerTest.java)
+- [Simple Compiler (Highlang, no preprocessing)](src/test/java/de/emilschlampp/scheCPU/examples/high/HighCompilerTest.java)
+- [Simple Compiler (Highlang, with preprocessing)](src/test/java/de/emilschlampp/scheCPU/examples/high/HighPreproCompilerTest.java)
 - [Executor (Bytecode)](src/test/java/de/emilschlampp/scheCPU/examples/emulator/CPUEmulatorTest.java)
 
 
