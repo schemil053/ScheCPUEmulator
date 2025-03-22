@@ -122,31 +122,31 @@ public class HighProgramCompiler {
                         "STORE D 5\n" + // Altes Register speichern
                         "LOAD A 0\n" + // Set A to 0
                         "STOREMEM 6 0\n" + // Set mem 6 to 0
-                        "LOAD B "+addr2+ "\n" + // load len of addr2 to B
-                        "LOAD C "+addr1+ "\n" + // load len of addr1 to C
+                        "LOAD B " + addr2 + "\n" + // load len of addr2 to B
+                        "LOAD C " + addr1 + "\n" + // load len of addr1 to C
                         "STORE B 7\n" + // load addr2 stored in B to 7
                         "STORE C 8\n" + // load addr1 stored in C to 8
-                        "ADDMM 8 "+addr1+"\n" + // move pointer to point at the end of string from addr1
-                        "STOREREG "+addr2+ " A\n" + // save string len in A
-                        "ADD B 1\n"+ // Move address pointer (at B directly is len stored)
+                        "ADDMM 8 " + addr1 + "\n" + // move pointer to point at the end of string from addr1
+                        "STOREREG " + addr2 + " A\n" + // save string len in A
+                        "ADD B 1\n" + // Move address pointer (at B directly is len stored)
                         //"OUTW 1 1\n"+
 
-                        "CMPM A 6\n"+ // Prevent zero len string
+                        "CMPM A 6\n" + // Prevent zero len string
                         "CZJMP end_" + func1 + "\n" +
                         "CNJMP end_" + func1 + "\n" +
 
 
                         "FUNC mem_concat_" + func + "\n" + // for loop
-                        "ADDM 6 1\n"+
-                        "ADDM 7 1\n"+
-                        "ADDM 8 1\n"+
-                        "STOREREGM 7 D\n"+
-                        "LOADREGM D 8\n"+
+                        "ADDM 6 1\n" +
+                        "ADDM 7 1\n" +
+                        "ADDM 8 1\n" +
+                        "STOREREGM 7 D\n" +
+                        "LOADREGM D 8\n" +
                         "CMPM A 6\n" + // a >
                         "CJMP mem_concat_" + func + "\n" + // end for loop
 
                         "FUNC end_" + func1 + "\n" +
-                        "ADDMM "+addr1+" "+addr2+"\n"+ // Stringlänge verändern
+                        "ADDMM " + addr1 + " " + addr2 + "\n" + // Stringlänge verändern
                         //"OUTW 1 1\n"+
                         "LOADMEM BOOL 1\n" +
                         "LOADMEM A 2\n" + // restore A
@@ -565,8 +565,8 @@ public class HighProgramCompiler {
                     asm = asm.substring(1);
                 }
                 code = code + "\n" + asm;
-            } else if(split[0].equals("copy")) {
-                if(protectedVariables.contains(split[1])) {
+            } else if (split[0].equals("copy")) {
+                if (protectedVariables.contains(split[1])) {
                     error("access violation!");
                 }
 
@@ -580,56 +580,88 @@ public class HighProgramCompiler {
                 }
 
                 code = code + "\n" +
-                        "STOREMEM "+variableAddresses.get(split[1])+" 0\n"+
-                        "ADDMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
-            } else if(split[0].equals("add")) {
-                if(protectedVariables.contains(split[1])) {
+                        "STOREMEM " + variableAddresses.get(split[1]) + " 0\n" +
+                        "ADDMM " + variableAddresses.get(split[1]) + " " + variableAddresses.get(split[2]);
+            } else if (split[0].equals("add")) {
+                if (protectedVariables.contains(split[1])) {
                     error("access violation!");
                 }
 
-                if(!isInt(split[2])) {
+                if (!isInt(split[2])) {
                     code = code + "\n" +
-                            "ADDMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                            "ADDMM " + variableAddresses.get(split[1]) + " " + variableAddresses.get(split[2]);
                 } else {
                     code = code + "\n" +
-                            "ADDM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                            "ADDM " + variableAddresses.get(split[1]) + " " + parseInt(split[2]);
                 }
-            } else if(split[0].equals("sub")) {
-                if(protectedVariables.contains(split[1])) {
+            } else if (split[0].equals("sub")) {
+                if (protectedVariables.contains(split[1])) {
                     error("access violation!");
                 }
 
-                if(!isInt(split[2])) {
+                if (!isInt(split[2])) {
                     code = code + "\n" +
-                            "SUBMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                            "SUBMM " + variableAddresses.get(split[1]) + " " + variableAddresses.get(split[2]);
                 } else {
                     code = code + "\n" +
-                            "SUBM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                            "SUBM " + variableAddresses.get(split[1]) + " " + parseInt(split[2]);
                 }
-            } else if(split[0].equals("mul")) {
-                if(protectedVariables.contains(split[1])) {
+            } else if (split[0].equals("mul")) {
+                if (protectedVariables.contains(split[1])) {
                     error("access violation!");
                 }
 
-                if(!isInt(split[2])) {
+                if (!isInt(split[2])) {
                     code = code + "\n" +
-                            "MULMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                            "MULMM " + variableAddresses.get(split[1]) + " " + variableAddresses.get(split[2]);
                 } else {
                     code = code + "\n" +
-                            "MULM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                            "MULM " + variableAddresses.get(split[1]) + " " + parseInt(split[2]);
                 }
-            } else if(split[0].equals("div")) {
-                if(protectedVariables.contains(split[1])) {
+            } else if (split[0].equals("div")) {
+                if (protectedVariables.contains(split[1])) {
                     error("access violation!");
                 }
 
-                if(!isInt(split[2])) {
+                if (!isInt(split[2])) {
                     code = code + "\n" +
-                            "DIVMM "+variableAddresses.get(split[1])+" "+variableAddresses.get(split[2]);
+                            "DIVMM " + variableAddresses.get(split[1]) + " " + variableAddresses.get(split[2]);
                 } else {
                     code = code + "\n" +
-                            "DIVM "+variableAddresses.get(split[1])+" "+parseInt(split[2]);
+                            "DIVM " + variableAddresses.get(split[1]) + " " + parseInt(split[2]);
                 }
+            } else if (split[0].equals("cmp")) {
+                String target = split[1];
+
+                String a = split[2];
+                String b = split[3];
+
+                if (!variableAddresses.containsKey(target)) {
+                    error("variable not found!");
+                }
+
+                if (!variableAddresses.containsKey(a)) {
+                    error("variable not found!");
+                }
+
+                if (!variableAddresses.containsKey(b)) {
+                    error("variable not found!");
+                }
+
+                if (protectedVariables.contains(target)) {
+                    error("access violation!");
+                }
+
+                int addressA = variableAddresses.get(a);
+                int addressB = variableAddresses.get(b);
+                int addressT = variableAddresses.get(target);
+
+                code = code + "\n" +
+                        "STORE BOOL 1\n" + //Boolstore sichern
+                        "CMPMEM " + addressA + " " + addressB + "\n" + // vergleichen
+                        "STORE BOOL " + addressT + "\n" + // in target kopieren
+                        "LOADMEM BOOL 1"; // Boolstore wiederherstellen
+                ;
             } else {
                 if (compileProcessor != null) {
                     String a = compileProcessor.generateSchesemForInstruction(compileContext, split);

@@ -32,6 +32,7 @@ Die Sprache ist wie folgt aufgebaut:
 | copy          | <Var1> <Var2>            | Kopiert Var2 zu Var1. Funktioniert nicht bei Strings!                                                                                                                                                                                                     |
 | outvar        | <Var1> <Var2>            | Gibt bei dem Port (Variable) auf var1 den wert von var2 aus                                                                                                                                                                                               |
 | invar         | <Var1> <Var2>            | Liest bei dem Port (Variable) auf var1 den wert auf var2 ein                                                                                                                                                                                              |
+| cmp           | <Target> <Var1> <Var2>   | Vergleicht var1 mit var2 und speicher das Ergebnis in target                                                                                                                                                                                              |
 
 Natürlich können Erweiterungen und PreCompiler die Möglichkeiten und Befehle erweitern.
 
