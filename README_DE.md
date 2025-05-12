@@ -49,7 +49,7 @@ Dieser Emulator läuft im "locked-down"-Modus: Programme werden beim Start in ei
 - Diese Konfiguration vermeidet Komplexitäten wie Speichersegmentierung und Paging und konzentriert sich auf direkten Speicherzugriff.
 
 **4. Befehlssatzarchitektur (ISA)**
-- Die CPU arbeitet mit einem einfachen Befehlssatz (z. B. MOV, ADD, SUB, JMP), der Datenbewegung, arithmetische und logische Operationen sowie den Programmfluss steuert.
+- Die CPU arbeitet mit einem einfachen Befehlssatz (z. B. ADD, SUB, JMP), der Datenbewegung, arithmetische und logische Operationen sowie den Programmfluss steuert.
 
 **5. Einzel-Threaded**
 - Diese CPU ist single-threaded für besseres Verständnis.
