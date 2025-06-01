@@ -5,6 +5,8 @@ public class EmulatorSandboxRestrictions {
     private boolean allowReset = true;
     private boolean allowFault = true;
 
+    public EmulatorSandboxRestrictions() {
+    }
 
     public boolean isAllowOutput() {
         return allowOutput;

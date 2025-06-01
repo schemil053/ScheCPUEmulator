@@ -33,5 +33,5 @@ jobs:
     - name: Upload JAR artifact
       uses: actions/upload-artifact@v4
       with:
-        name: my-jar-artifact
+        name: Building Output
         path: target/*.jar
