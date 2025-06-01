@@ -29,3 +29,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -P github-repo -B package test --file pom.xml
+
+    - name: Upload JAR artifact
+      if: github.event_name == 'pull_request'
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-jar-artifact
+        path: target/*.jar
